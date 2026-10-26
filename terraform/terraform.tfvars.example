@@ -7,7 +7,7 @@ mi_ip_cidr = "0.0.0.0/32" # <-- CAMBIELA
 
 llave_publica = "~/.ssh/la-llave-dw.pub"
 
-# Interruptores: prenda una pieza a la vez, segun lo indique la GUIA_PASO_A_PASO.md.
+# Interruptores: prenda una pieza a la vez, segun lo indique el README.md.
 crear_ec2      = false
 crear_rds      = false
 crear_docdb    = false
