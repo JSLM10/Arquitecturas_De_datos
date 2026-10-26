@@ -8,7 +8,7 @@ El proyecto está diseñado para ejecutarse en dos modalidades:
 
 ---
 
-## 🏛️ Arquitectura General
+## Arquitectura General
 
 ```mermaid
 flowchart LR
@@ -68,7 +68,7 @@ Para facilitar la identificación de los recursos en la nube, el proyecto utiliz
 
 ---
 
-## 📋 Prerrequisitos del Sistema
+## Prerrequisitos del Sistema
 
 Antes de iniciar, asegúrate de contar con:
 - **Sistema Operativo:** Linux o Windows con **WSL 2** (Ubuntu 22.04 o 24.04 recomendado). Todos los comandos se ejecutan en bash dentro de la raíz del proyecto.
@@ -79,7 +79,7 @@ Antes de iniciar, asegúrate de contar con:
 
 ---
 
-## 🚀 Opción A: Inicio Rápido en Local (Docker + DuckDB)
+## Opción A: Inicio Rápido en Local (Docker + DuckDB)
 
 Ideal para probar el flujo de datos, la calidad y el modelo estrella de forma inmediata, en local y sin costos de nube.
 
@@ -113,11 +113,11 @@ git checkout datawarehouse
 
 ---
 
-## ☁️ Opción B: Despliegue Empresarial en AWS (Paso a Paso Desde Cero)
+## Opción B: Despliegue Empresarial en AWS (Paso a Paso Desde Cero)
 
 Sigue estos pasos en orden para desplegar la arquitectura completa en tu propia cuenta de AWS.
 
-> 💰 **Gestión de Costos:** Los recursos en la nube facturan por hora mientras estén encendidos (especialmente EC2, DocumentDB y RDS). Al finalizar tus pruebas, corre el script de destrucción indicado en el **Paso 10**.
+> **Gestión de Costos:** Los recursos en la nube facturan por hora mientras estén encendidos (especialmente EC2, DocumentDB y RDS). Al finalizar tus pruebas, corre el script de destrucción indicado en el **Paso 10**.
 
 ---
 
@@ -136,7 +136,7 @@ aws sts get-caller-identity --profile user_cli
 #### 0.2 Permisos de IAM para roles de EC2
 El usuario de AWS CLI necesita permisos para crear y pasar perfiles de instancia a la EC2. En el repositorio se incluye la plantilla [iam/05_user_cli_dw_roles_ec2.json](file:///c:/Users/juanp/Desktop/actividad-DataLake-DataWarehouse/iam/05_user_cli_dw_roles_ec2.json):
 1. Entra a la **Consola de AWS** con tu usuario administrador.
-2. Ve a **IAM → Políticas → Crear política** (pestaña JSON).
+2. Ve a **IAM -> Políticas -> Crear política** (pestaña JSON).
 3. Pega el contenido de `iam/05_user_cli_dw_roles_ec2.json`.
 4. Nómbrala `user_cli-dw-roles-ec2` y créala.
 5. Asigna la política a tu usuario de AWS (`user_cli`).
@@ -258,7 +258,7 @@ terraform -chdir=terraform apply
    ```bash
    bash scripts/aws/compadre.sh probar redshift
    ```
-   *También puedes abrir la consola de AWS en **Amazon Redshift → Query editor v2** y conectarte al workgroup usando AWS Secrets Manager.*
+   *También puedes abrir la consola de AWS en **Amazon Redshift -> Query editor v2** y conectarte al workgroup usando AWS Secrets Manager.*
 
 ---
 
@@ -282,7 +282,7 @@ Con los cuatro interruptores en `true`, despliega el stack de Airflow en la máq
 
 ---
 
-### Paso 7: Carga Inicial (Airflow → S3 → Redshift → dbt)
+### Paso 7: Carga Inicial (Airflow -> S3 -> Redshift -> dbt)
 Ejecuta la primera carga end-to-end:
 ```bash
 bash scripts/aws/escenarios.sh carga-inicial
@@ -366,7 +366,7 @@ bash verificar_limpieza.sh
 
 ---
 
-## 🛠️ Preguntas Frecuentes y Errores Comunes
+## Preguntas Frecuentes y Errores Comunes
 
 * **`AccessDenied` al ejecutar Terraform:** Tu usuario de AWS carece de permisos. Revisa el Paso 0.2 y adjunta la política `iam/05_user_cli_dw_roles_ec2.json`.
 * **No puedo conectar por SSH a la EC2:** Tu IP pública dinámica cambió. Consulta tu nueva IP con `curl -s https://checkip.amazonaws.com`, actualiza `mi_ip_cidr` en `terraform/terraform.tfvars` y ejecuta `terraform -chdir=terraform apply`.
@@ -376,7 +376,7 @@ bash verificar_limpieza.sh
 
 ---
 
-## 📚 Documentación Técnica Detallada
+## Documentación Técnica Detallada
 
 Para profundizar en el diseño conceptual y técnico:
 * [Arquitectura y flujo de datos detallado](docs/architecture.md)
