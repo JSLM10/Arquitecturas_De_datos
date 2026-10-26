@@ -1,0 +1,47 @@
+# Terraform: estado y variables locales
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+*.tfplan
+
+# Llaves y credenciales
+*.pem
+*.key
+*.ppk
+id_*
+la-llave*
+.env
+.env.*
+.secretos
+accessKeys.csv
+*credentials*.csv
+.aws/
+
+# Datos y artefactos locales
+warehouse/
+.venv/
+__pycache__/
+*.pyc
+*.log
+src/dbt/target/
+src/dbt/logs/
+src/dbt/dbt_packages/
+src/dbt/.user.yml
+src/dbt_redshift/target/
+src/dbt_redshift/logs/
+src/dbt_redshift/dbt_packages/
+
+# Capturas y entregables locales (no se suben)
+evidencias/*
+!evidencias/.gitkeep
+*.docx
+*.doc
+~$*.docx
+*.pdf
+*.xlsx
+*.xls
+*.pptx
+

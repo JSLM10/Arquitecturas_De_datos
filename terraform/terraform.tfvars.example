@@ -1,0 +1,14 @@
+# Copie este archivo como terraform.tfvars (queda ignorado por git) y ajuste.
+region = "us-east-2"
+perfil = "user_cli"
+
+# Su IP publica con /32. Sacela con:  curl -s https://checkip.amazonaws.com
+mi_ip_cidr = "0.0.0.0/32" # <-- CAMBIELA
+
+llave_publica = "~/.ssh/la-llave-dw.pub"
+
+# Interruptores: prenda una pieza a la vez, segun lo indique la GUIA_PASO_A_PASO.md.
+crear_ec2      = false
+crear_rds      = false
+crear_docdb    = false
+crear_redshift = false

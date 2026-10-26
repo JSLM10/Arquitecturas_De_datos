@@ -122,6 +122,13 @@ def connect_mysql():
 
 
 def ensure_mongo_collections(db):
+    if os.getenv("MONGO_SIN_VALIDADOR"):
+        # Amazon DocumentDB no soporta validadores $jsonSchema ni collMod con validator:
+        # las colecciones se crean sin ellos y la calidad la revisa dbt (cuarentena).
+        for name in ("reviews", "navigation_events"):
+            if name not in db.list_collection_names():
+                db.create_collection(name)
+        return
     for name, validator in (("reviews", REVIEW_VALIDATOR), ("navigation_events", EVENT_VALIDATOR)):
         if name in db.list_collection_names():
             db.command("collMod", name, validator=validator, validationLevel="strict")

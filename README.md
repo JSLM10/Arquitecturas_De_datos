@@ -72,6 +72,10 @@ Para recorrer las etapas una a una, sigue las guías en orden, empezando por [01
 - Si un conteo no coincide, revisa la etapa anterior antes de continuar.
 - `verify_incremental_load.sh --batch-id N` necesita un `N` que todavía no exista en las fuentes. Tras regenerar los datos, todos los números de lote vuelven a estar libres.
 
+## Migración a AWS
+
+La migración del warehouse a AWS (RDS MySQL, DocumentDB, S3, Redshift Serverless, Airflow y dbt en EC2) se despliega con Terraform desde la carpeta [terraform/](terraform/), un módulo por servicio. El paso a paso, con las capturas que corresponden a cada punto, está en [GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md). Para borrar todo: `bash destruir_todo.sh`. Para confirmar que no queda nada facturable: `bash verificar_limpieza.sh`.
+
 ## Modelo y documentación de referencia
 
 - [Arquitectura y flujo de datos](docs/architecture.md)
