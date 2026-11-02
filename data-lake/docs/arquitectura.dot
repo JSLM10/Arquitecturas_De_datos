@@ -1,0 +1,31 @@
+digraph lago {
+  rankdir=TB; nodesep=0.45; ranksep=0.55; bgcolor="white";
+  node [shape=box, style="rounded,filled", fillcolor="#E3F2FD", color="#78909C", fontname="Arial", fontsize=11, margin="0.18,0.10"];
+  edge [color="#546E7A", fontname="Arial", fontsize=10, fontcolor="#37474F"];
+
+  rss [label="Fuentes RSS\nEl Tiempo: Colombia, Economía, Deportes"];
+  ec2 [label="EC2 · Airflow (Docker Compose)\nDAG noticias_datalake: 9 etapas"];
+  comp [label="Amazon Comprehend\nIdioma, entidades y frases clave"];
+
+  subgraph cluster_s3 {
+    label="Un solo bucket S3 · la-bodega-del-pelao-dl-<cuenta>"; fontname="Arial"; fontsize=11; style="dashed,rounded"; color="#90A4AE";
+    bronze [label="bronze/\nXML original + _meta.json\npor fuente, fecha y run_id", fillcolor="#FFF3E0"];
+    silver [label="silver/\nnews · news_entities\nnews_key_phrases · cuarentena\n(Parquet por fecha)", fillcolor="#ECEFF1"];
+    gold   [label="gold/\nnoticias_por_dia · entidades_top\nfrases_por_seccion\n(Parquet por fecha)", fillcolor="#FFFDE7"];
+    ctrl   [label="control/ · stage/ · cache_comprehend/\nEstado de lotes, etapas y caché", fillcolor="#F3E5F5"];
+  }
+
+  glue [label="AWS Glue Data Catalog\nTablas, esquemas y particiones"];
+  athena [label="Amazon Athena\nConsultas SQL"];
+
+  rss -> bronze [label=" Extracción"];
+  ec2 -> bronze [style=dashed, label=" Ingesta"];
+  bronze -> silver [label=" Limpieza y enriquecimiento"];
+  ec2 -> comp [style=dashed, label=" Invoca"];
+  comp -> silver [style=dashed, label=" Entidades y frases"];
+  silver -> gold [label=" Agregaciones"];
+  ec2 -> ctrl [style=dashed, label=" Registra el estado"];
+  glue -> athena [style=dashed, label=" Metadatos"];
+  silver -> athena; gold -> athena; ctrl -> athena [style=dotted];
+  ec2 -> glue [style=dashed, label=" Registra particiones"];
+}

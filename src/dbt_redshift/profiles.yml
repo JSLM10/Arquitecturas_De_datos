@@ -1,0 +1,17 @@
+# Perfil de dbt para Amazon Redshift Serverless (reemplaza al perfil de DuckDB).
+# Ni la clave ni el usuario estan aqui: src/ecommerce_dw/aws/dbt_aws.py los lee de Secrets Manager
+# y los pasa como variables de entorno solo al proceso de dbt.
+ecommerce_dw:
+  target: redshift
+  outputs:
+    redshift:
+      type: redshift
+      host: "{{ env_var('REDSHIFT_HOST') }}"
+      port: 5439
+      user: "{{ env_var('REDSHIFT_USER') }}"
+      password: "{{ env_var('REDSHIFT_PASSWORD') }}"
+      dbname: "{{ env_var('REDSHIFT_DB') }}"
+      schema: intermediate
+      threads: 4
+      sslmode: require
+      connect_timeout: 30

@@ -1,0 +1,5 @@
+[
+  {"fuente": "colombia", "medio": "El Tiempo", "seccion": "Colombia", "url": "https://www.eltiempo.com/rss/colombia.xml"},
+  {"fuente": "economia", "medio": "El Tiempo", "seccion": "Economía", "url": "https://www.eltiempo.com/rss/economia.xml"},
+  {"fuente": "deportes", "medio": "El Tiempo", "seccion": "Deportes", "url": "https://www.eltiempo.com/rss/deportes.xml"}
+]
